@@ -45,9 +45,9 @@ var cities = [
 factory('DataStore', function() {
     //create datastore with default values
     var DataStore = {
-        city:       'Miami',
-        latitude:   25.7877,
-        longitude:  80.2241 };
+        city:       'New Delhi',
+        latitude:   28.6100,
+        longitude:  77.2300};
 
     DataStore.setCity = function (value) {
        DataStore.city = value;
@@ -60,7 +60,19 @@ factory('DataStore', function() {
     DataStore.setLongitude = function (value) {
        DataStore.longitude = value;
     };
-   
+
+    //External function
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        DataStore.latitude = position.coords.latitude;
+        DataStore.longitude = position.coords.longitude;
+    }
     return DataStore;
 })
 .factory('Weather', forecastioWeather);

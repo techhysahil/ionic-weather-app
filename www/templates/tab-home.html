@@ -3,44 +3,77 @@
     <!-- Display current location's weather data-->
     <div class="top_panel padding20">
         <h3 class="city_name">{{city}}</h3>
-        <h5 class="current_summary">{{current.currently.summary}}
-        </h5>
-        <div class="float_c">
-            <span class="icon ion-cloud large text-left"></span>
-            <span class="large float_r">{{current.currently.temperature}} &deg; </span>
+        <div class="small">{{current.currently.time*1000 | date:'EEEE, h:mm a'}}</div>
+        <div class="float_c row padding_l0">
+            <span class="icon ion-cloud v_large text-left col padding_l0" ng-class="{'': platform == 'android', '': platform != 'android'}"></span>
+            <span class="large col">{{current.currently.temperature}} &deg; F</span>
+        </div>
+        <h5 class="current_summary float_c">{{current.currently.summary}}</h5>
+        <div class="row padding_l0">
+            <div class="col padding_l0">Time : {{current.currently.time | date:'HH:mm:ss'}}</div>
+            <div class="col">Humidity : {{current.currently.humidity}}</div>
+        </div>
+        <div class="row padding_l0">
+            <div class="col padding_l0">WindSpeed : {{current.currently.windSpeed}}</div>
+            <div class="col">Pressure : {{current.currently.pressure}}</div>
+        </div>
+        <div class="row padding_l0">
+            <div class="col padding_l0">Timezone : {{current.timezone}}</div>
+            <div class="col">Dewpoint : {{current.currently.dewPoint}}</div>
         </div>
     </div>
-    <div class="padding20 row">
-        <div class="col">
-            <div>Sun</div>
+    <div class="row coming_days">
+        <!--<div class="col">-->
+            <!--<div>Day</div>-->
+            <!--<div><br /></div>-->
+            <!--<div>Temp &deg; F </div>-->
+            <!--<div>Temp &deg; C </div>-->
+            <!--<div>Time</div>-->
+            <!--<div>Humidity</div>-->
+            <!--<div>WindSpeed</div>-->
+            <!--<div>Pressure</div>-->
+            <!--<div>TimeZone</div>-->
+            <!--<div>Dewpoint</div>-->
+        <!--</div>-->
+        <div class="col" ng-repeat="item in current.daily.data" ng-if="!$first">
+            <div>{{item.time*1000 | date:'EEE'}}</div>
             <div class="icon ion-cloud"></div>
-            <div>{{current.currently.temperature}} &deg; </div>
-        </div>
-        <div class="col">
-            <div>Mon</div>
-            <div class="icon ion-cloud"></div>
-            <div>{{current.currently.temperature}} &deg; </div>
-        </div>
-        <div class="col">
-            <div>Tue</div>
-            <div class="icon ion-cloud"></div>
-            <div>{{current.currently.temperature}} &deg; </div>
-        </div>
-        <div class="col">
-            <div>Thu</div>
-            <div class="icon ion-cloud"></div>
-            <div>{{current.currently.temperature}} &deg; </div>
-        </div>
-        <div class="col">
-            <div>Fri</div>
-            <div class="icon ion-cloud"></div>
-            <div>{{current.currently.temperature}} &deg; </div>
-        </div>
-        <div class="col">
-            <div>Sat</div>
-            <div class="icon ion-cloud"></div>
-            <div>{{current.currently.temperature}} &deg; </div>
+            <div>{{item.temperatureMin}} - {{item.temperatureMax}}&deg; F </div>
+            <div class="">{{item.summary}}</div>
         </div>
     </div>
+    <!--<ion-slide-box on-slide-changed="slideChanged(index)">-->
+        <!--<ion-slide>-->
+            <!--<h3>Thank you for choosing the Awesome App!</h3>-->
+            <!--<div id="logo">-->
+                <!--<img src="http://code.ionicframework.com/assets/img/app_icon.png">-->
+            <!--</div>-->
+            <!--<p>-->
+                <!--We've worked super hard to make you happy.-->
+            <!--</p>-->
+            <!--<p>-->
+                <!--But if you are angry, too bad.-->
+            <!--</p>-->
+        <!--</ion-slide>-->
+        <!--<ion-slide>-->
+            <!--<h3>Using Awesome</h3>-->
+
+            <!--<div id="list">-->
+                <!--<h5>Just three steps:</h5>-->
+                <!--<ol>-->
+                    <!--<li>Be awesome</li>-->
+                    <!--<li>Stay awesome</li>-->
+                    <!--<li>There is no step 3</li>-->
+                <!--</ol>-->
+            <!--</div>-->
+        <!--</ion-slide>-->
+        <!--<ion-slide>-->
+            <!--<h3>Any questions?</h3>-->
+            <!--<p>-->
+                <!--Too bad!-->
+            <!--</p>-->
+        <!--</ion-slide>-->
+    <!--</ion-slide-box>-->
+
   </ion-content>
 </ion-view>

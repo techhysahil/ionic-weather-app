@@ -24,6 +24,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .padding20{
   padding: 20px;
 }
+.padding_l0{
+  padding-left: 0px;
+}
+.width_30{
+  width: 30%;
+}
+.width_70{
+  width: 70%;
+}
 .center{
   display: -webkit-box;
   display: -moz-box;
@@ -54,8 +63,22 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   -ms-flex-align: center;
   align-items: center;
 }
+.platform-browser{
+  .large{
+    font-size: 80px !important;
+    speak: none;
+    font-style: normal;
+    line-height: 120px;
+  }
+  .v_large{
+    font-size: 120px !important;
+    speak: none;
+    font-style: normal;
+    line-height: 150px;
+  }
+}
 .large {
-  font-size: 60px;
+  font-size: 37px;
   speak: none;
   font-style: normal;
   line-height: 80px;
@@ -81,4 +104,28 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .top_panel{
   background-color: #FF9800;
   color: #fff;
+}
+.coming_days{
+  >.col{
+    border: 1px solid #FF9800;
+    border-right: 0px;
+    &:last-child{
+      border-right: 1px solid #FF9800;
+    }
+  }
+}
+
+//IOS Specfic code
+.platform-ios{
+
+}
+
+//Android Specfic code
+.platform-android{
+
+}
+
+//Windows Phone Specfic code
+.platform-windowsphone{
+
 }
