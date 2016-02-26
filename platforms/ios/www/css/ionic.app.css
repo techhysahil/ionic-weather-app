@@ -7050,3 +7050,91 @@ a.button {
 .platform-c:not(.enable-transitions) * {
   -webkit-transition: none !important;
   transition: none !important; }
+
+.padding20 {
+  padding: 20px; }
+
+.padding_l0 {
+  padding-left: 0px; }
+
+.width_30 {
+  width: 30%; }
+
+.width_70 {
+  width: 70%; }
+
+.center {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.platform-browser .large {
+  font-size: 80px !important;
+  speak: none;
+  font-style: normal;
+  line-height: 120px; }
+.platform-browser .v_large {
+  font-size: 120px !important;
+  speak: none;
+  font-style: normal;
+  line-height: 150px; }
+
+.large {
+  font-size: 37px;
+  speak: none;
+  font-style: normal;
+  line-height: 80px; }
+
+.float_l {
+  float: left; }
+
+.float_r {
+  float: right; }
+
+.float_c {
+  clear: both; }
+
+.city_name {
+  color: #ffffff;
+  font-size: 22px; }
+
+.current_summary {
+  color: #eeeeee;
+  font-size: 16px;
+  font-weight: 600; }
+
+.top_panel {
+  background-color: #FF9800;
+  color: #fff; }
+
+.coming_days > .col {
+  border: 1px solid #FF9800;
+  border-right: 0px; }
+  .coming_days > .col:last-child {
+    border-right: 1px solid #FF9800; }
+

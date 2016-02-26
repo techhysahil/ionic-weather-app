@@ -1,6 +1,8 @@
 angular.module('starter.controllers', ['ionic'])
 .constant('FORECASTIO_KEY', '7cc9527d79b9d450c5e1fd4444826eef')
 .controller('HomeCtrl', function($scope,$state,Weather,DataStore) {
+     //Detect Platform
+     $scope.platform = ionic.Platform.platform();
 	//read default settings into scope
 	console.log('inside home');
 	$scope.city  = DataStore.city;
@@ -11,11 +13,27 @@ angular.module('starter.controllers', ['ionic'])
 	Weather.getCurrentWeather(latitude,longitude).then(function(resp) {
       $scope.current = resp.data;
       console.log('GOT CURRENT', $scope.current);
+
+        var geocoder = new google.maps.Geocoder;
+        var latlng = {lat: latitude, lng: longitude};
+
+        geocoder.geocode({'location': latlng}, function(results, status) {
+            console.log("vfg",latlng);
+        });
       //debugger;
     }, function(error) {
       alert('Unable to get current conditions');
       console.error(error);
     });
+
+    //$scope.getCity = function(){
+    //    var geocoder = new google.maps.Geocoder;
+    //    var latlng = {lat: latitude, lng: longitude};
+    //
+    //    geocoder.geocode({'location': latlng}, function(results, status) {
+    //        console.log("vfg",latlng);
+    //    });
+    //}();
 
 })
 .controller('LocationsCtrl', function($scope,$state, Cities,DataStore) {
