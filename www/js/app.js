@@ -29,13 +29,13 @@ $stateProvider
     })
     // Each tab has its own nav history stack:
     .state('tab.home', {
-      url: '/home',
-      views: {
-        'tab-home': {
-          templateUrl: 'templates/tab-home.html',
-          controller: 'HomeCtrl'
+        url: '/home/{context}',
+        views: {
+            'tab-home': {
+                templateUrl: 'templates/tab-home.html',
+                controller: 'HomeCtrl'
+            }
         }
-      }
     })
     .state('tab.changecity', {
       url: '/city',
@@ -55,6 +55,6 @@ $stateProvider
         }
       }
     });
-// if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/tab/home/1');
 });
