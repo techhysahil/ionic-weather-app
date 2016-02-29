@@ -1,5 +1,5 @@
 angular.module('starter.controllers', ['ionic','ngResource'])
-.controller('HomeCtrl', function($scope, $state,$http, $q) {
+.controller('HomeCtrl', function($scope, $state,$http, $q,HomeServices) {
      var FORECASTIO_KEY = '7cc9527d79b9d450c5e1fd4444826eef';
 
      //Detect Platform
@@ -7,7 +7,6 @@ angular.module('starter.controllers', ['ionic','ngResource'])
 
      //Variables
      var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
-
     //Gogle map Data Fetch
     function getLocation() {
         var deferred = $q.defer();
@@ -51,7 +50,7 @@ angular.module('starter.controllers', ['ionic','ngResource'])
     });
 })
 
-.controller('LocationsCtrl', function($scope,$state,$http,$q,$resource) {
+.controller('LocationsCtrl', function($scope,$state,$http,$q,$resource,sharedServices) {
   var FORECASTIO_KEY = '7cc9527d79b9d450c5e1fd4444826eef';
   $scope.cities = [
       { id: 0, name: 'Miami', lat:25.7877 , lgn: 80.2241 },
