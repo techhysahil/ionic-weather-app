@@ -5,25 +5,24 @@ angular.module('starter.controllers', ['ionic','ngResource'])
      //Detect Platform
      $scope.platform = ionic.Platform.platform();
 
+     //Variables
+     var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
+
     //Gogle map Data Fetch
-
-
     function getLocation() {
         var deferred = $q.defer();
-        function showPosition(position) {
-            $scope.latitude = position.coords.latitude;
-            $scope.longitude = position.coords.longitude;
-            deferred.resolve();
-        }
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
+        function showPosition(position) {
+            $scope.latitude = position.coords.latitude;
+            $scope.longitude = position.coords.longitude;
+            deferred.resolve();
+        }
         return deferred.promise;
     }
-    getLocation().then(getCity);
-
     function getCity(){
         var geocoder = new google.maps.Geocoder;
         var latlng = {
@@ -33,26 +32,26 @@ angular.module('starter.controllers', ['ionic','ngResource'])
 
         geocoder.geocode({'location': latlng}, function(results, status) {
             console.log("Location Details Object ",results);
+            $scope.city= results[7].formatted_address;
         });
     };
-
-    var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
-
     function getCurrentWeather(lat, lng) {
         return $http.jsonp(url + lat + ',' + lng + '?callback=JSON_CALLBACK');
-    }
-
-    getCurrentWeather($scope.latitude,$scope.longitude).then(function(resp) {
-        $scope.current = resp.data;
-        console.log('GOT CURRENT Frecase io data :', $scope.current);
-        //debugger;
-    }, function(error) {
-        alert('latle to get current conditions');
-        console.error(error);
+    };
+    getLocation().then(getCity);
+    getLocation().then(function(){
+        getCurrentWeather($scope.latitude,$scope.longitude).then(function(resp) {
+            $scope.current = resp.data;
+            console.log('GOT CURRENT Frecase io data :', $scope.current);
+            //debugger;
+        }, function(error) {
+            //alert('latle to get current conditions');
+            console.error(error);
+        })
     });
 })
 
-.controller('LocationsCtrl', function($scope,$state,$http, $resource) {
+.controller('LocationsCtrl', function($scope,$state,$http,$q,$resource) {
   var FORECASTIO_KEY = '7cc9527d79b9d450c5e1fd4444826eef';
   $scope.cities = [
       { id: 0, name: 'Miami', lat:25.7877 , lgn: 80.2241 },
@@ -70,37 +69,46 @@ angular.module('starter.controllers', ['ionic','ngResource'])
 	var lgn  = $scope.cities[cityId].lgn; //longitude
 	var city = $scope.cities[cityId].name; //city name
 
-      $scope.setCity = function (value) {
-          $scope.city = value;
-      };
-
       $scope.setLatitude = function (value) {
-          $scope.longitude = value;
+          $scope.latitude = value;
       };
 
       $scope.setLongitude = function (value) {
           $scope.longitude = value;
       };
 
-
-      $scope.setCity(city);
       $scope.setLatitude(lat);
       $scope.setLongitude(lgn);
 
+      console.log($scope.longitude + "and" + $scope.latitude);
+
       var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
 
+      //Gogle map Data Fetch
+      function getCity(){
+          var geocoder = new google.maps.Geocoder;
+          var latlng = {
+              lat: parseFloat($scope.latitude),
+              lng: parseFloat($scope.longitude)
+          };
+
+          geocoder.geocode({'location': latlng}, function(results, status) {
+              console.log("Location Details Object ",results);
+              $scope.city= results[7].formatted_address;
+          });
+      };
       function getCurrentWeather(lat, lng) {
           return $http.jsonp(url + lat + ',' + lng + '?callback=JSON_CALLBACK');
-      }
-
+      };
+      getCity();
       getCurrentWeather($scope.latitude,$scope.longitude).then(function(resp) {
           $scope.current = resp.data;
           console.log('GOT CURRENT Frecase io data :', $scope.current);
           //debugger;
       }, function(error) {
-          alert('latle to get current conditions');
+          //alert('latle to get current conditions');
           console.error(error);
-      });
+      })
 
 	
   	$state.go('tab.home');

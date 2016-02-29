@@ -2,7 +2,7 @@
   <ion-content class="has-header">
     <!-- Display current location's weather data-->
     <div class="top_panel padding20">
-        <h3 class="city_name">{{city}}, {{country}}</h3>
+        <h3 class="city_name">{{city}}</h3>
         <div class="small">{{current.currently.time*1000 | date:'EEEE, h:mm a'}}</div>
         <div class="float_c row padding_l0">
             <span class="icon ion-cloud v_large text-left col padding_l0" ng-class="{'': platform == 'android', '': platform != 'android'}"></span>
