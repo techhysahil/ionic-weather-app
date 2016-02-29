@@ -2,7 +2,7 @@ angular.module('starter.controllers', ['ionic','ngResource'])
 .controller('HomeCtrl', function($scope, $state, $http, $q, $stateParams, HomeServices) {
      var FORECASTIO_KEY = '7cc9527d79b9d450c5e1fd4444826eef';
 
-        console.log("stateparam:",$stateParams.context);
+        console.log("stateparam:",$stateParams.context + " "+ $stateParams.param1 + " "+ $stateParams.param2);
 
      //Detect Platform
      $scope.platform = ionic.Platform.platform();
@@ -30,24 +30,24 @@ angular.module('starter.controllers', ['ionic','ngResource'])
 
   $scope.changeCity = function(cityId) {
   	//get lat and longitude for seleted location
-	var lat  = $scope.cities[cityId].lat; //latitude
-	var lgn  = $scope.cities[cityId].lgn; //longitude
-	var city = $scope.cities[cityId].name; //city name
+	//var lat  = $scope.cities[cityId].lat; //latitude
+	//var lgn  = $scope.cities[cityId].lgn; //longitude
+	//var city = $scope.cities[cityId].name; //city name
+    //
+     // console.log("latlng value:", lat + " " + lgn);
+    //
+     // var data = HomeServices.dataByCoOrd(lat, lgn).then(function(data){
+     //     $scope.city= data.city;
+     //     $scope.country= data.country;
+     //     $scope.current= data.current;
+     //     console.log("get chnaged object data",data);
+     // });
 
-      console.log("latlng value:", lat + " " + lgn);
-
-      var data = HomeServices.dataByCoOrd(lat, lgn).then(function(data){
-          $scope.city= data.city;
-          $scope.country= data.country;
-          $scope.current= data.current;
-          console.log("get chnaged object data",data);
+      $state.go('tab.home',{
+          context: 1,
+          param1 : "hrll",
+          param2: "hfh"
       });
-
-      var context = {
-          a: 1,
-          b: 2
-      }
-      $state.go('tab.home',{"context" : "hello"});
   }
 })
 .controller('SettingsCtrl', function($scope) {
