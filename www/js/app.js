@@ -27,9 +27,18 @@ $stateProvider
       abstract: true,
       templateUrl: "templates/tabs.html"
     })
+    .state('tab.currenthome', {
+        url: '/home',
+        views: {
+            'tab-home': {
+                templateUrl: 'templates/tab-home.html',
+                controller: 'HomeCurrentCtrl'
+            }
+        }
+    })
     // Each tab has its own nav history stack:
     .state('tab.home', {
-        url: '/home?context&param1&param2',
+        url: '/home/:param1/:param2',
         views: {
             'tab-home': {
                 templateUrl: 'templates/tab-home.html',
