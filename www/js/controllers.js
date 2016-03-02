@@ -57,5 +57,5 @@ angular.module('starter.controllers', ['ionic','ngResource'])
 
 })
 .controller('SettingsCtrl', function($scope) {
-	//manages app settings
+
 });
