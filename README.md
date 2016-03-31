@@ -3,6 +3,8 @@ Ionic Weather App
 
 This application is build using Ionic Framework. So i am ready with web app for Desktop users  as well as Hybrid app for ios & android devices. This application show waether report for current location. you can also change the city and get weather report for it. 
 
+##WILL BE LIVE SOON
+
 Features:
 -- Custom SCSS support.
 -- Build using Angular JS.
